@@ -53,15 +53,15 @@ def get_params_from_line(line):
 
 
 def get_sum_hash(hash_type):
-    if hash_type == 'MD5':
-        sum_hash = md5()
-    elif hash_type == 'SHA1':
-        sum_hash = sha1()
-    elif hash_type == 'SHA256':
-        sum_hash = sha256()
-    else:
+    sum_hash = {
+        'MD5': md5(),
+        'SHA1': sha1(),
+        'SHA256': sha256(),
+    }
+    try:
+        return sum_hash[hash_type]
+    except KeyError:
         raise SystemExit(f'Hash type {hash_type} is wrong')
-    return sum_hash
 
 
 if __name__ == '__main__':
